@@ -11,7 +11,6 @@ moveZeros = (array) =>{
     }   
     return array;
 }
-
 console.log(moveZeros([1,10,20,0,59,63,0,88,0]))
 
 //The array has to be modified in-place. 
