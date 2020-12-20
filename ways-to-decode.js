@@ -36,14 +36,15 @@ codedMap.set('26', 'z')
 //1,27,1,8,2,6
 
 //e.g. 1226
-//abbf : 1,2,2,6  --1st round stored
+//abbf : 1,2,2,6  -- 1st round stored
 //avf  : 1,22, 6  -- 2nd round stored
 //abz  : 1,2,26
 //lbf  : 12,2,6  -- 1st round stored
 //lz  : 12,26
 
-//1 + decode(226) -> 3
-//12 + decode(26) -> 2
+//1 + decode(226) -> 3 ways to decode
+//12 + decode(26) -> 2 ways to decode
+//total ways = 5
 
 numWays = (encodedMsg) => {
     //Base Cases
@@ -112,6 +113,7 @@ helper = (encodedMsg, memo = {}) =>{
     if(memo[encodedMsg]) return memo[encodedMsg];
 
     let mapKey = encodedMsg.substring(0, 2);
+    
     let result = helper(encodedMsg.substring(1, encodedMsg.length), memo);
 
     if (parseInt(mapKey) <= 26) {

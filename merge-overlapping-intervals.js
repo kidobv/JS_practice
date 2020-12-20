@@ -1,4 +1,6 @@
 class Pair {
+    //first is the lowerlimit of the interval
+    //second is the upperlimit of the interval
     constructor(first, second) {
         this.first = first;
         this.second = second;
@@ -20,6 +22,7 @@ let mergeIntervals = function (v) {
             second = v[i].second;
         }
     }
+    //add the last determined interval
     result.push(new Pair(first, second))
     return result;
 }
