@@ -1,3 +1,4 @@
+//JS functions
 var merge = function (nums1, m, nums2, n) {
     //slice doesn't mutate the original array but splice does, splice returns the removed elements
     if (nums1.length < m)
