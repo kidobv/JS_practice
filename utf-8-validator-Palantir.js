@@ -20,28 +20,28 @@ utf8Validator = (uftCode) => {
         }
     }
 
-    let bytesToCheck = 0;
+    let bytesToValidate = 0;
     //Validate each byte
     for (let i = 0; i < utfCharBytes.length; i++) {
         let utfByte = utfCharBytes[i];
-        if (bytesToCheck == 0) {
+        if (bytesToValidate == 0) {
             //cases 2-3 bytes
             //Get the number of 1 bits, for each 1 bit increment the bytesToCheck variable
             for (let j = 0; j < utfByte.length; j++) {
                 let charBit = utfByte[j];
-                //case bit 0 no need to check other bits
+                //When we find a 0 there's no need to check any further
                 if (charBit == '0') {
                     break;
                 }
-                bytesToCheck += 1;
+                bytesToValidate += 1;
             }
             /// VALIDATION Edge cases ///
             //case of 1 byte char
-            if (bytesToCheck == 0) {
+            if (bytesToValidate == 0) {
                 continue;
             }
-            //can't be greater than 4 bytes and bytes to check can't be
-            if (bytesToCheck > 4 || bytesToCheck == 1) {
+            //can't be greater than 3 bytes and bytes to check can't be one
+            if (bytesToValidate > 3 || bytesToValidate == 1) {
                 return false;
             }
         }
@@ -50,10 +50,14 @@ utf8Validator = (uftCode) => {
                 return false
             }
         }
-        bytesToCheck -= 1;
+        //Now we can determine the number of bytes to validate based on the # of 1's we found
+        //minus 1 because the first byte is not a following byte
+        //then every time we validate a byte we need to reduce the number
+        bytesToValidate-=1;
     }
-    //If we still have bytesToCheck we retrun false because we don't have enough bytes
-    return bytesToCheck == 0;
+    //If we still have a bytes to validate at the end of the For then 
+    //we retrun false because we don't have enough bytes 
+    return bytesToValidate == 0;
 }
 console.log(utf8Validator("001001001100001010100010"));
 
