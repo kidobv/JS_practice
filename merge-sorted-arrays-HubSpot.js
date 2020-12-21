@@ -26,12 +26,12 @@ mergeArrays2 = (arr1, arr2, k) => {
     let result = [];
     let a = 0; // arr1 pointer
     let b = 0; // arr2 pointer
-    while(k > 0){
-        if(arr1[a] < arr2[b]){ // things to consider, index out of bounds, what to do when out of bounds?
+    while (k > 0) {
+        if (arr1[a] < arr2[b]) { // things to consider, index out of bounds, what to do when out of bounds?
             result.push(arr1[a]);
             a += 1;
         }
-        else{
+        else {
             result.push(arr2[b]);
             b += 1;
         }
