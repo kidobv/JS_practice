@@ -53,7 +53,7 @@ utf8Validator = (uftCode) => {
         //Now we can determine the number of bytes to validate based on the # of 1's we found
         //minus 1 because the first byte is not a following byte
         //then every time we validate a byte we need to reduce the number
-        bytesToValidate-=1;
+        bytesToValidate -= 1;
     }
     //If we still have a bytes to validate at the end of the For then 
     //we retrun false because we don't have enough bytes 
@@ -76,13 +76,13 @@ utf8Validator2 = (uftCode) => {
         let utfByte = utfCharBytes[i];
         //edge cases
         if (isNextByte(utfCharBytes[0])) return false;
-        if(utfByte.length < 8) return false;
-        
+        if (utfByte.length < 8) return false;
+        if (utfByte[0] == '0') continue;
+
         let byteSub = utfByte.substring(0, 3);
-        if (utfByte[0]=='0') continue;
         if (byteSub == '110') {
             //check the next byte
-            if (!utfCharBytes[i + 1] || !isNextByte(utfCharBytes[i + 1])){
+            if (!utfCharBytes[i + 1] || !isNextByte(utfCharBytes[i + 1])) {
                 return false;
             }
         }
@@ -96,10 +96,10 @@ utf8Validator2 = (uftCode) => {
             }
         }
     }
-    return true;    
+    return true;
 }
 
-isNextByte = (utfByte)=>{
+isNextByte = (utfByte) => {
     return utfByte.substring(0, 2) == '10';
 }
 
