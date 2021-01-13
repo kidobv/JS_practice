@@ -1,14 +1,17 @@
+
+//O(n2) time, O(1) space
 // function twoNumberSum(array, targetSum) {
 // for(let n of array) {	
 //     for(let m of array){
-// 			if(n+m === targetSum && n !== m){
-//         return [m,n].sort((a,b) => a-b);
+// 		   if(n+m === targetSum && n !== m){
+//         	return [m,n].sort((a,b) => a-b);
 //       } 
 //     }         
 //   }
 //   return [];
 // }
 
+//O(n) time, O(n) space
 //map for - of approach
 function twoNumberSum(array, targetSum) {
 	map = {}	
@@ -16,7 +19,6 @@ function twoNumberSum(array, targetSum) {
 		if (num) {
 			let sumMinusElement = targetSum - num;
 			if (map[sumMinusElement.toString()]) {
-				console.log(map)
 				return [sumMinusElement, num].sort((a, b) => a - b)
 			}
 			map[num.toString()] = num;
@@ -25,6 +27,7 @@ function twoNumberSum(array, targetSum) {
 	return [];
 }
 
+//O(n) time, O(n) space
 twoNumberSum2 = (array, targetN) => {
 	if (array.length == 2) return array;
 	let myMap = new Map();
@@ -41,6 +44,29 @@ twoNumberSum2 = (array, targetN) => {
 	return [];
 }
 
+//If the array is sorted 
+//O(n) time, O(1) space
+//read from each side of the array and decrement the right pointer or increment the left pointer
+
+twoSumSorted = (arr, target) =>{
+	let right = arr.length-1;
+	let left = 0;
+	while(left < right){
+		const currSum = arr[left] + arr[right];
+		if (currSum > target){
+			right--;
+		}
+		else if (currSum < target){
+			left++;
+		}
+		else{
+			return [arr[left], arr[right]];
+		}
+	}
+	return [];
+}
+
 let arr = [1, 3, 4, 5];
 let arr2 = [1, 3, 4, 10, null, 2];
-console.log(twoNumberSum2(arr, 6))
+//console.log(twoNumberSum2(arr, 6))
+console.log(twoSumSorted(arr, 6))
