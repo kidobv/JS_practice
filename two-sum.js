@@ -28,17 +28,20 @@ function twoNumberSum(array, targetSum) {
 }
 
 //O(n) time, O(n) space
+//return index
 twoNumberSum2 = (array, targetN) => {
 	if (array.length == 2) return array;
 	let myMap = new Map();
 	//find if a number y = targetN - x is part of the array
-	for (let num of array) {
+	for (let i = 0; i < array.length; i++) {
+		num = array[i];
 		if (num) {			
 			let substractedNum = targetN - num;
-			if (myMap.get(substractedNum)) {	
-				return [substractedNum, num];			
+			console.log(substractedNum)
+			if (myMap.has(substractedNum)) {	
+				return [myMap.get(substractedNum), i];			
 			}
-			myMap.set(num, num);
+			myMap.set(num, i);
 		}
 	};
 	return [];
@@ -66,7 +69,7 @@ twoSumSorted = (arr, target) =>{
 	return [];
 }
 
-let arr = [1, 3, 4, 5];
+let arr = [1, 3, 4, 4, 5];
 let arr2 = [1, 3, 4, 10, null, 2];
-//console.log(twoNumberSum2(arr, 6))
-console.log(twoSumSorted(arr, 6))
+console.log(twoNumberSum2(arr, 6))
+//console.log(twoSumSorted(arr, 6))

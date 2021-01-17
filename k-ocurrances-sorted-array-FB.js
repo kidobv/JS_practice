@@ -8,7 +8,7 @@
 //target O(logn) time
 findOcurrances = (arr, target) =>{
    let occurrences = 0;
-    //divide an conquer
+    //binary search
     let halfPoint = Math.floor(arr.length/2);
     if(arr[halfPoint] == target){
         occurrences += 1;

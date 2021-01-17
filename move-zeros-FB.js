@@ -11,9 +11,9 @@ moveZeros = (array) =>{
     }   
     return array;
 }
-console.log(moveZeros([1,10,20,0,59,63,0,88,0]))
+//console.log(moveZeros([0,1,10,20,0,59,63,0,88,0]))
 
-//The array has to be modified in-place. 
+//The array has to be modified in-place. O(n) 
 moveZerosFixed = (array) => {
     if (array.length <= 1) return array;
     let lengthA = array.length;
@@ -36,4 +36,26 @@ moveZerosFixed = (array) => {
     return array;
 }
 
-console.log(moveZerosFixed([1, 10, 20, 0, 59, 63, 0, 88, 0]))
+console.log(moveZerosFixed([0, 1, 10, 20, 0, 59, 63, 0, 88, 0]))
+
+
+//The array has to be modified in-place. O(n/2) time, O(1) space
+moveZerosFixed2 = (array) => {
+    let right = array.length-1;
+    let left = 0;
+
+    while(left < right){
+        while(array[left] === 0){
+            left++;
+        }       
+        if(array[right] === 0){
+            array[right] = array[left];
+            array[left] = 0; //target
+            left++;
+        }
+        right--;
+    }    
+
+    return array;
+}
+console.log(moveZerosFixed2([0, 1, 10, 20, 0, 59, 63, 0, 88, 0]))
