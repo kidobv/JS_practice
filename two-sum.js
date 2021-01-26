@@ -37,7 +37,6 @@ twoNumberSum2 = (array, targetN) => {
 		num = array[i];
 		if (num) {			
 			let substractedNum = targetN - num;
-			console.log(substractedNum)
 			if (myMap.has(substractedNum)) {	
 				return [myMap.get(substractedNum), i];			
 			}

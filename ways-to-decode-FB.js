@@ -47,9 +47,10 @@ codedMap.set('26', 'z')
 //total ways = 5
 
 numWays = (encodedMsg) => {
-    //Base Cases
     const msgLength = encodedMsg.length;
+    ///invaild code
     if(encodedMsg[0] == 0) {return 0;}
+    //base case
     if ((msgLength == 1 && codedMap.has(encodedMsg[0])) || msgLength == 0){ return 1;}
 
     let mapKey = encodedMsg.substring(0, 2);

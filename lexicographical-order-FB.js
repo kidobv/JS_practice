@@ -15,36 +15,33 @@ var isAlienSorted = function (words, order) {
 
     //iterate words
     for (let i = 0; i < words.length - 1; i++) {
-        const currWord = words[i];
-        const nextWord = words[i + 1];
-        console.log(currWord);
-        console.log(nextWord);
-        //get iteration length
-        const k = Math.min(currWord.length, nextWord.length);
-        for (let j = 0; j < k; j++) {
-            const firstWordOrder = alphabetMap.get(currWord[j]);
-            const secondWordOrder = alphabetMap.get(nextWord[j]);
-            //indexOf takes O(n) thus is not the most efficent solution
-            // const firstWordOrder = order.indexOf(currWord[j]);
-            // const secondWordOrder = order.indexOf(nextWord[j]);
-            console.log(firstWordOrder);
-            console.log(secondWordOrder);
-            if (firstWordOrder === secondWordOrder) continue;
-            if (firstWordOrder > secondWordOrder) { 
-                return false; 
-            }
-            else
-                break;
-        }
-        //if we get out of the loop and they are the same length means that they are the same             //word then return true
-        //thus the substring word should be prior the full string to be in order
-        if (currWord.length > nextWord.length) {
+        if (!compare(words[i], words[i + 1], alphabetMap)){
             return false;
         }
-        return true;
     }
+    return true;        
 };
+
+let compare = (s1, s2, map) =>{
+    const smallestL = Math.min(s1.length, s2.length);
+    for(let i=0; i<smallestL; i++){
+        if (s1[i] !== s2[i]){
+            if (map.get(s1[i]) > map.get(s2[i])){
+                return false;
+            } 
+            else {
+                return true;
+            }
+        }        
+    }
+    //if we are out of the loop then it means that either s1 === s2 or s1 > s2;
+    if(s1.length > s2.length){
+        return false;
+    }
+    return true;
+}
 
 //console.log(isAlienSorted(["hello", "leetcode"], "hlabcdefgijkmnopqrstuvwxyz"));
 //console.log(isAlienSorted(["word", "world", "row"], "worldabcefghijkmnpqstuvxyz"));
-console.log(isAlienSorted(["apple", "app"], "ngxlkthsjuoqcpavbfdermiywz"));
+//console.log(isAlienSorted(["apple", "app"], "ngxlkthsjuoqcpavbfdermiywz"));
+console.log(isAlienSorted(["appleeee", "zappld"], "ngxlkthsjuoqcpavbfdermiywz"));

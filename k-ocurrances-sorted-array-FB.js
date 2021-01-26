@@ -5,7 +5,7 @@
 // Input: arr = [4, 4, 8, 8, 8, 15, 16, 23, 23, 42], target = 8
 // Output: 3
 
-//target O(logn) time
+//run time O(logn + n) 
 findOcurrances = (arr, target) =>{
    let occurrences = 0;
     //binary search
