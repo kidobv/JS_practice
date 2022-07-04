@@ -37,13 +37,13 @@ codedMap.set('26', 'z')
 
 //e.g. 1226
 //abbf : 1,2,2,6  -- 1st round stored
-//avf  : 1,22, 6  -- 2nd round stored
+//avf  : 1,22,6  -- 2nd round stored
 //abz  : 1,2,26
 //lbf  : 12,2,6  -- 1st round stored
-//lz  : 12,26
+//lz   : 12,26
 
-//1 + decode(226) -> 3 ways to decode
-//12 + decode(26) -> 2 ways to decode
+//1 , decode(226) -> 3 ways to decode
+//12 , decode(26) -> 2 ways to decode
 //total ways = 5
 
 numWays = (encodedMsg) => {

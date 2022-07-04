@@ -7,7 +7,7 @@
 
 //run time O(logn + n) 
 findOcurrances = (arr, target) =>{
-   let occurrences = 0;
+   let occurrences = 0; 
     //binary search
     let halfPoint = Math.floor(arr.length/2);
     if(arr[halfPoint] == target){

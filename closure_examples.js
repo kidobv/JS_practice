@@ -47,7 +47,9 @@ const privCounter = function(init) {
     return (num) => num + init 
 }
 let privateCount = privCounter(1);
+console.log("privateCount")
 console.log(privateCount(4))
+console.log(privateCount(5))
 
 //// 2 parameters counter
 const privCounter2 = function(init) { return (num,nn) => num + init + nn}

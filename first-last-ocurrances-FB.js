@@ -78,12 +78,12 @@ var binarySearch = function (nums, target, startIdx, endIdx, isLeftSearch) {
     if (nums[middle] == target) {
         //Do binary search for left and right
         if (isLeftSearch) {
-            if (middle > startIdx && nums[middle] == nums[middle - 1]) {
+            if (middle > startIdx && nums[middle - 1] == target) {
                 return binarySearch(nums, target, startIdx, middle - 1, isLeftSearch);
             }
         }
         else {
-            if (middle < endIdx && nums[middle] == nums[middle + 1]) {
+            if (middle < endIdx && nums[middle + 1] == target) {
                 return binarySearch(nums, target, middle + 1, endIdx, isLeftSearch);
             }
         }

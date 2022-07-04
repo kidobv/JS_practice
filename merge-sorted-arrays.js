@@ -40,3 +40,24 @@ mergeArrays2 = (arr1, arr2, k) => {
     return result;
 }
 console.log(mergeArrays2(array1, array2, 3));
+
+
+let merge3 = (nums1, nums2, k) => {
+    let i = 0; //pointer for nums1
+    let j = 0; //pointer for nums2
+    let sortedArr = [];
+
+    while (sortedArr.length < k){
+        if(nums1[i] < nums2[j]){
+            sortedArr.push(nums1[i])
+            i++
+        }
+        else{
+            sortedArr.push(nums2[j])
+            j++
+        }
+    }
+    return sortedArr;
+}
+
+console.log(merge3(array1,array2, 4)) //[1,2,3,4]

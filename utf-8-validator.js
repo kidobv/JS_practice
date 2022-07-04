@@ -10,7 +10,7 @@
 
 //Input example: 001001001100001010100010 = $ñ should return true.
 
-//O(n^2) = O(i*j)
+// O(i*j)
 utf8Validator = (uftCode) => {
     let utfCharBytes = [];
     //Get the bytes from the string
@@ -26,7 +26,7 @@ utf8Validator = (uftCode) => {
         let utfByte = utfCharBytes[i];
         if (bytesToValidate == 0) {
             //cases 2-3 bytes
-            //Get the number of 1 bits, for each 1 bit increment the bytesToCheck variable
+            //Get the number of bits equal to 1, for each 1 bit increment the bytesToCheck variable.
             for (let j = 0; j < utfByte.length; j++) {
                 let charBit = utfByte[j];
                 //When we find a 0 there's no need to check any further
@@ -55,7 +55,7 @@ utf8Validator = (uftCode) => {
         //then every time we validate a byte we need to reduce the number
         bytesToValidate -= 1;
     }
-    //If we still have a bytes to validate at the end of the For then 
+    //If we still have a byte to validate at the end of the For then 
     //we retrun false because we don't have enough bytes 
     return bytesToValidate == 0;
 }
@@ -75,23 +75,23 @@ utf8Validator2 = (uftCode) => {
     for (let i = 0; i < utfCharBytes.length; i++) {
         let utfByte = utfCharBytes[i];
         //edge cases
-        if (isNextByte(utfCharBytes[0])) return false;
+        if (isComplementByte(utfCharBytes[0])) return false;
         if (utfByte.length < 8) return false;
         if (utfByte[0] == '0') continue;
 
         let byteSub = utfByte.substring(0, 3);
         if (byteSub == '110') {
             //check the next byte
-            if (!utfCharBytes[i + 1] || !isNextByte(utfCharBytes[i + 1])) {
+            if (!utfCharBytes[i + 1] || !isComplementByte(utfCharBytes[i + 1])) {
                 return false;
             }
         }
         else if (byteSub == '111') {
             //check the next 2 bytes
-            if (!utfCharBytes[i + 1] || !isNextByte(utfCharBytes[i + 1])) {
+            if (!utfCharBytes[i + 1] || !isComplementByte(utfCharBytes[i + 1])) {
                 return false;
             }
-            if (!utfCharBytes[i + 2] || !isNextByte(utfCharBytes[i + 2])) {
+            if (!utfCharBytes[i + 2] || !isComplementByte(utfCharBytes[i + 2])) {
                 return false;
             }
         }
@@ -99,7 +99,7 @@ utf8Validator2 = (uftCode) => {
     return true;
 }
 
-isNextByte = (utfByte) => {
+isComplementByte = (utfByte) => {
     return utfByte.substring(0, 2) == '10';
 }
 

@@ -4,14 +4,15 @@
  * @return {boolean}
  */
 var isAlienSorted = function (words, order) {
-    const alphabetMap = new Map();
-    for (let i = 0; i < order.length; i++) {
-        alphabetMap.set(order.charAt(i), i);
-    }
     //console.log(alphabetMap)
     if (words.length < 2) {
         return true;
     }
+
+    const alphabetMap = new Map();
+    for (let i = 0; i < order.length; i++) {
+        alphabetMap.set(order.charAt(i), i);
+    }    
 
     //iterate words
     for (let i = 0; i < words.length - 1; i++) {
@@ -25,7 +26,7 @@ var isAlienSorted = function (words, order) {
 let compare = (s1, s2, map) =>{
     const smallestL = Math.min(s1.length, s2.length);
     for(let i=0; i<smallestL; i++){
-        if (s1[i] !== s2[i]){
+        if (s1[i] !== s2[i]){ //abc, acd
             if (map.get(s1[i]) > map.get(s2[i])){
                 return false;
             } 
@@ -33,7 +34,7 @@ let compare = (s1, s2, map) =>{
                 return true;
             }
         }        
-    }
+    }//abc // abcd
     //if we are out of the loop then it means that either s1 === s2 or s1 > s2;
     if(s1.length > s2.length){
         return false;
