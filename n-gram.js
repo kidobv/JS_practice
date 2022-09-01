@@ -98,8 +98,6 @@ function getNgram(term, n) {
 //console.log(rFindNgram("AGCTTCGATTCGATT", 3));
 //console.log(findNgram("AGCTTCGATTCGATT", 3));
 
-
-
 function nGramy(nString, n){
     let termMap = new Map();
     while(nString.length >= n){

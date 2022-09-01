@@ -65,3 +65,24 @@ let toNonBinary = transformPrompt(word => genderMap[word] ?? word)
 
 console.log(toAllCaps(globalPrompt))
 console.log(toNonBinary(globalPrompt))
+
+
+// Curry function
+// if no parameters are passed we need to execute the callback with the previous args
+function curry(callback) {  
+  let curried = (...args) =>{
+    if(args.length === 0){
+      return callback();
+    }
+
+    return (...otherArgs) => {
+      if(otherArgs.length === 0){
+        return callback(...args)
+      }
+
+      return curried(...args, ...otherArgs)
+    }
+  }
+
+  return curried;
+}
