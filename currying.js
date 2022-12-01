@@ -1,3 +1,10 @@
+// Add a funciton to the String prototype to put a comma in between every character
+String.prototype.addCommas = function(){
+  return this.split("").join()
+}
+
+console.log("test".addCommas())
+
 // Implement console.log
 // console.error
 // console.debug
@@ -7,16 +14,16 @@ function log(...args){
 	console.log(...args)
 }
 
-function errorlog(...args){
-	console.log("Error", ...args)
-}
+// function errorlog(...args){
+// 	console.log("Error", ...args)
+// }
 
-function debuglog(...args){
-	console.log("Debug", ...args)
-}
+// function debuglog(...args){
+// 	console.log("Debug", ...args)
+// }
 
-function curry (func) {
-	return (a) => (...b) => func(a, ...b); 
+function curry(callback) {
+	return (a) => (...b) => callback(a, ...b); 
 }
 
 let args = ["hola", 2, {'kido': "ame"}]
@@ -26,7 +33,6 @@ let curriedLog = curry(log);
 let errorLog = curriedLog("Error: ");
 let debugLog = curriedLog("Debug: ");
 
-// log(...args)
 errorLog("hola", 2, {'kido': "ame"});
 debugLog(...args);
 
@@ -69,7 +75,7 @@ console.log(toNonBinary(globalPrompt))
 
 // Curry function
 // if no parameters are passed we need to execute the callback with the previous args
-function curry(callback) {  
+function curryP(callback) {  
   let curried = (...args) =>{
     if(args.length === 0){
       return callback();
