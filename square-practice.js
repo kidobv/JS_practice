@@ -175,7 +175,7 @@ let cc = new CreditCard(123, "Visa", "Chase", 90);
 //<4, 5, 6, 7, 8*, 9, 10>
 //<1, 2*, 3, 4, 5, 6, 7>
 //total = 10, show = 7, current=8
-function pagination(total, show, current){
+function pagination1(total, show, current){
    let toAppend = Math.floor(show/2) 
     let startIdx = current - toAppend; 
     let endIdx = current + toAppend; 
@@ -205,6 +205,29 @@ function pagination(total, show, current){
     }
     return result+=">"
 }
+
+function pagination (total, show, current){
+    let result = current + "*";
+    let left = current -1;
+    let right = current +1;
+
+    while (show > 0){
+        if(left >= 1){
+            result = `${left}, ${result}`;
+            left--;
+            show--;  
+        }
+
+        if(right <= total){
+            result = `${result}, ${right}`;
+            right++;
+            show--;  
+        }              
+    }
+
+    return `<${result}>`
+}
+
 
 console.log(pagination(10,7,8))
 console.log(pagination(10, 7, 2))

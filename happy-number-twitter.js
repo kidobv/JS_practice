@@ -25,7 +25,7 @@ var isHappy = function(n) {
     return false   
 };
 
-//recursive un preferred way
+//recursive 
 var isHappy2 = function(n, numSet) {
     //edge cases
     if(n == 1) 
