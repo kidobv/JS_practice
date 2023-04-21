@@ -156,7 +156,7 @@ function mergerArrays(a,b,k){
         else{
             result.push(a[pointA])
             pointA++; 
-            //check out of bounds
+           // check out of bounds
             if (pointA == a.length)
                 aNum = Infinity;
             else
@@ -165,7 +165,7 @@ function mergerArrays(a,b,k){
     }
     return result;
 }
-
+console.log("merge arrays")
 console.log(mergerArrays([1, 2, 5], [3, 4, 6], 6))
 console.log(mergerArrays([1], [2, 3, 4], 4))
 console.log(mergerArrays([1, 3, 4], [2], 4))

@@ -59,7 +59,7 @@ console.log(findSmallestIdx(["A", "a", "Ar","bn","cook","im", "jr","fry", "fr"],
 // 	let right = array.length;
 
 // 	while(left < right){		
-// 		let mid = Math.floor((right + left)/2);		
+// 		let mid = ((right - left)/2)+ left;		//prevent overflow in java
 // 		let diff = compareKeys(array[mid], key)
 // 		if (diff >= 0) {
 //              right = mid;            
@@ -80,20 +80,20 @@ console.log(findSmallestIdx(["A", "a", "Ar","bn","cook","im", "jr","fry", "fr"],
 // }
 
 
-function findSmallestIdx(array, key){
-	let left = 0;
-	let right = array.length-1;
+// function findSmallestIdx(array, key){
+// 	let left = 0;
+// 	let right = array.length-1;
 
-	while(left < right){		
-		let mid = Math.floor((right + left)/2);	
-		if (array[mid] > key) {
-             right = mid;            
-        }
-        else{
-        	left = mid+1; //5
-        }
-    }
-    return array[left] > key ? left : -1
-}
+// 	while(left < right){		
+// 		let mid = Math.floor((right + left)/2;	
+// 		if (array[mid] > key) {
+//              right = mid;            
+//         }
+//         else{
+//         	left = mid+1; //5
+//         }
+//     }
+//     return array[left] > key ? left : -1
+// }
 
 //console.log(findSmallestIdx(["A", "a", "Ar","bn","cook","im", "jr","fry", "fr"], "fr"))

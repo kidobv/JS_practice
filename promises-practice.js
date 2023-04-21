@@ -30,13 +30,15 @@ const codeBlocker = () => {
     return '1 Billion loops done!'
 }
 
-//failed attempt to removde blocking code off the main thread
+//failed attempt to remove blocking code off the main thread
 const codeBlockerPromise = () => {
     return new Promise((resolve, reject) => {
         let i = 0;
-        while (i < 10000000000) { i++; }
+        while (i < 2000000000) { i++; }
+        //this is blocking because we want sync 2 to print out first
+        console.log("test blocking")
         //the creation of the Promise and while loop will be executed in the main thread, the only thing that will go to the micro task queue is the resolve()
-        resolve('10 Billion loops done!');
+        resolve('2 Billion loops done!');
     })
 }
 
@@ -45,15 +47,16 @@ const codeBlockerResolved = () => {
     return Promise.resolve().then(v => {
         let i = 0;
         while (i < 10000000000) { i++; }
+        console.log("test non-blocking")
         return '10 Billion loops done!';
     })
 }
 
-//console.log('sync 1')
+// console.log('sync 1')
 // console.log(codeBlocker())
-//codeBlockerPromise().then(data=> console.log(data))
-//codeBlockerResolved().then(data=> console.log(data))
-//console.log('sync 2')
+// codeBlockerPromise().then(data=> console.log(data))
+// codeBlockerResolved().then(data=> console.log(data))
+// console.log('sync 2')
 
 const getFlavor = async (food) => {
     const flavors = {
@@ -157,19 +160,18 @@ const fetchAllFlavors = async () => {
         // return res;
 
     ////we can use a traditional for loop to resolve them in series
-        // let result = [];
-        // for (const f of foods) {
-        //     const res = await getFlavorDelayed(f);
-        //     console.log(res)
-        //     result.push(res);
-        // }
-        // console.log("Elapsed: ", `${Date.now() - start}ms`)
-        // return result;  
+        let resultSync = [];
+        for (const f of foods) {
+            const res = await getFlavorDelayed(f);
+            console.log(res)
+            resultSync.push(res);
+        }
+        console.log("Elapsed: ", `${Date.now() - start}ms`)
+        //return result;  
 
     ////we can use a traditional for loop with await to resolve them in parallel, looping over promises
         const flavors = foods.map(f => getFlavorDelayed(f))        
         const result = []
-        console.log(flavors, "hgg")
         for await (const f of flavors) {
             console.log(f);
             result.push(f);
@@ -184,3 +186,46 @@ const fetchAllFlavors = async () => {
 }
 //console.log(fetchAllFlavors()) 
 fetchAllFlavors().then(r => console.log(r));
+
+//Netflix practice
+
+// Create a function that batches fetch requests 
+
+let queue = [];
+
+async function getFullName(idx){
+    let name = getName(idx);
+    let lastName = getLastName(idx);
+    queue.push(name, lastName);
+
+    if(queue.length >= 3){
+       return Promise.all(queue)
+    }
+}
+
+function getName(idx){
+    // return new Promise((resolve, reject) => {
+    //     if(idx == 1)
+    //         resolve("Kidany")
+    //     else
+    //         resolve("Amelia")
+    // })
+    return Promise.resolve().then(v => {
+        if (idx == 1)
+            return "kidany"
+        else
+            return "Amelia"
+    })
+}
+
+function getLastName(idx){
+    return new Promise((resolve, reject) => {
+        if (idx == 1)
+            resolve("Berrios")
+        else
+            resolve("Vance")
+    })
+}
+
+getFullName(1)
+getFullName(2).then(res => console.log(res))
